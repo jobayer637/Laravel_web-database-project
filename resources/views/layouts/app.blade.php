@@ -22,9 +22,15 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                @if(Auth::check() && Auth::user()->role_id==1)
+                <a class="navbar-brand" href="{{ route('admin.dashboard') }}">
+                    DASHBOARD
                 </a>
+                @else
+                <a class="navbar-brand" href="{{ route('user.dashboard') }}">
+                    DASHBOARD
+                </a>
+                @endif
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
