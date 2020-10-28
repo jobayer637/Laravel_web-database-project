@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Events\WelcomeMailEvent;
 
 class User extends Authenticatable
 {
@@ -37,23 +38,33 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function role(){
+    // Welcome Mail event When user registered first
+    protected $dispatchesEvents = [
+        'created' => WelcomeMailEvent::class,
+    ];
+
+    public function role()
+    {
         return $this->belongsTo('App\Role');
     }
 
-    public function questions(){
+    public function questions()
+    {
         return $this->hasMany('App\Question');
     }
 
-    public function blogs(){
+    public function blogs()
+    {
         return $this->hasMany('App\Blog');
     }
 
-    public function answers(){
+    public function answers()
+    {
         return $this->hasMany('App\Answer');
     }
 
-    public function comments(){
+    public function comments()
+    {
         return $this->hasMany('App\Comment');
     }
 }

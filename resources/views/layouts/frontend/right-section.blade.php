@@ -1,4 +1,4 @@
-<div id="rsApps">
+<div id="rsApps" class="">
     <div class="card rounded-0 shadow-sm">
          <div class="card-header"><h4 class="ml-3 text-center"><b>Recent Five Question</b></h4></div>
         <div class="card-header">
@@ -32,7 +32,7 @@
             @endforeach
         </div>
     </div>
-            
+
 </div>
 
 

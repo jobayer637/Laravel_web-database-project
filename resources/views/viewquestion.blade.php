@@ -5,7 +5,7 @@
     p{
         font-size: 20px;
     }
-</style>    
+</style>
 @endpush
 
 @section('left-section')
@@ -44,7 +44,7 @@
                <div class="media">
                 <img src="https://sb-content-file.s3-ap-northeast-1.amazonaws.com/smallbridge_favicon.png" class="mr-3" alt="..." width="70px">
                 <div class="media-body">
-                    <h4 class="m-0 d-inline-block">@{{ answer.user.name }}</h4> 
+                    <h4 class="m-0 d-inline-block">@{{ answer.user.name }}</h4>
                     <button class="btn btn-outline-danger btn-sm float-right rounded-0" v-if="user.id===answer.user.id" v-on:click="deleteAns(answer.id)"><i class="fas fa-trash"></i></button>
 
                     <button class="btn btn-sm btn-outline-info rounded-0 float-right mr-1" v-if="user.id===answer.user.id" v-on:click="openUpdateBox(answer.id, answer.answer)" data-toggle="modal" data-target="#staticBackdrop"><i class="fas fa-edit"></i></button>
@@ -100,7 +100,7 @@
             mounted() {
                 this.laravelEcho();
                 this.getAns()
-                this.dfHuman()    
+                this.dfHuman()
             },
             methods: {
                 async dfHuman(){
@@ -162,7 +162,7 @@
                         answer: this.ansUpdateBox
                     })
                     .then((res)=>{
-                        this.answers.find(ans => ans.id === this.updateAnsId ? ans.answer = res.data.answer: '')  
+                        this.answers.find(ans => ans.id === this.updateAnsId ? ans.answer = res.data.answer: '')
                         $('#staticBackdrop').modal('hide')
                     })
                 },

@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Blog;
 use Illuminate\Support\Str;
+use App\Jobs\NewBlogJob;
+use App\User;
 use Auth;
 
 class BlogController extends Controller
@@ -38,6 +40,7 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
+        $user = User::all();
         $newBlog = new Blog;
         $newBlog->user_id = Auth::user()->id;
         $newBlog->category_id = $request->category;
@@ -45,6 +48,10 @@ class BlogController extends Controller
         $newBlog->slug = Str::slug($request->title, '-');
         $newBlog->body = $request->body;
         $newBlog->save();
+
+        $notify = Blog::where('id',$newBlog->id)->with('user')->first();
+        NewBlogJob::dispatch($user, $notify);
+
         return response($newBlog);
     }
 

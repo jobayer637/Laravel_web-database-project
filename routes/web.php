@@ -42,7 +42,7 @@ Route::get('/view-question/{id}', 'User\QuestionController@index')->name('view-q
 Route::get('/view-blog/{id}', 'User\BlogController@viewBlog')->name('view-blog');
 
 Route::fallback(function () {
-    echo " 
+    echo "
    <div style='padding: 10px 20px; width:250px; height:200px; text-align:center; position:absolute; top:0; bottom:0; left:0; right:0; margin:auto;'>
     <h1>404 not found <br></h1>
    <a style='border:1px solid blue;text-decoration:none;padding: 10px 20px;' href='" . route('home') . "'>Home<Home>

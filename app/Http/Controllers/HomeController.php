@@ -24,7 +24,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with('user')->latest()->get();
+        $blogs = Blog::with('user')->latest()->paginate(7);
         return view('home', compact('blogs'));
     }
 }
